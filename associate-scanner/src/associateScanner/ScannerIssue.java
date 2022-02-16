@@ -23,8 +23,11 @@ Project Structure:
 +========================================================================================+
 */
 
-package burp;
+package associateScanner;
 
+import burp.IHttpRequestResponse;
+import burp.IHttpService;
+import burp.IScanIssue;
 import java.net.URL;
 
 public class ScannerIssue implements IScanIssue {

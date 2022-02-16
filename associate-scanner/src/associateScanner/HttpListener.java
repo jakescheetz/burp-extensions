@@ -23,9 +23,9 @@ Project Structure:
 +========================================================================================+
 */
 
+package associateScanner;
 
-package burp;
-
+import burp.*;
 import java.net.URL;
 import java.net.http.HttpResponse.ResponseInfo;
 

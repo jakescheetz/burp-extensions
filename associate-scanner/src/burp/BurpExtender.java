@@ -26,6 +26,8 @@ Project Structure:
 
 package burp;
 
+import associateScanner.HTTPListener;
+
 public class BurpExtender implements IBurpExtender {
     final String extensionName = "Associate Scanner ::: Basic";
     
@@ -33,7 +35,7 @@ public class BurpExtender implements IBurpExtender {
     public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
        //set the extension name
         callbacks.setExtensionName(extensionName);
-        
+        callbacks.registerHttpListener(new HttpListener(callbacks));
     }
     
 }
