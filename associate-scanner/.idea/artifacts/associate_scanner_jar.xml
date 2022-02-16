@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="associate-scanner:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/associate_scanner_jar</output-path>
+    <root id="archive" name="associate-scanner.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/associateScanner/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

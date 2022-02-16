@@ -26,7 +26,7 @@ Project Structure:
 
 package burp;
 
-import associateScanner.HTTPListener;
+import associateScanner.HttpListener;
 
 public class BurpExtender implements IBurpExtender {
     final String extensionName = "Associate Scanner ::: Basic";
