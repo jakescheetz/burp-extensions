@@ -18,6 +18,8 @@ Project Structure:
         HttpListener.java -> defines the logic for the passive http response analysis
                              and conversion of http data from bytes to strings
         ~~~~~~~~~~~~~~~~~~~~
+        ScannerIssue.java -> defines what information that is alerted to the user of the 
+                             extension and how the information is presented
 +========================================================================================+
 */
 
@@ -31,10 +33,7 @@ public class BurpExtender implements IBurpExtender {
     public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
        //set the extension name
         callbacks.setExtensionName(extensionName);
-
-        //initialize the HTTP listener
-        //IHttpListener listener;
-        //callbacks.registerHttpListener(listener);
+        
     }
     
 }

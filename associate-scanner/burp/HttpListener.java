@@ -18,36 +18,58 @@ Project Structure:
         HttpListener.java -> defines the logic for the passive http response analysis
                              and conversion of http data from bytes to strings
         ~~~~~~~~~~~~~~~~~~~~
+        ScannerIssue.java -> defines what information that is alerted to the user of the 
+                             extension and how the information is presented
 +========================================================================================+
 */
 
 
 package burp;
 
+import java.net.URL;
+import java.net.http.HttpResponse.ResponseInfo;
+
+import burp.ScannerIssue;
+
 public class HttpListener implements IHttpListener{
 
 
-
+    //instantiate the two classes needed for data manipulation and methods
     private IExtensionHelpers helpers;
+    private IBurpExtenderCallbacks callbacks;
+
+    //constructor for HTTPListener class
+    public HttpListener(IBurpExtenderCallbacks callbacks){
+        this.callbacks = callbacks;
+        this.helpers = callbacks.getHelpers();
+    }
+
 
     @Override
     public void processHttpMessage(int toolFlag, boolean messageIsRequest, IHttpRequestResponse messageInfo) {
-        
-        //build a byte array to process the information from the HTTP request
-        byte[] request = messageInfo.getRequest();
-        IRequestInfo requestInfo = helpers.analyzeRequest(request);
-        requestInfo.getUrl();
-
-        // logic to only process responses, not requests
+        // logic check to only process responses, not requests
         if (!messageIsRequest){
+            IRequestInfo requestInfo = this.helpers.analyzeRequest(messageInfo.getRequest());
+            URL url = requestInfo.getUrl();
 
-        }
+            //logic to check if URL is OOS (out of scope)
+            if(!callbacks.isInScope(url)){
+                callbacks.printOutput("The following URL was not in scope: " + url);
+            }
+
+            //grab request information
+            byte[] response = messageInfo.getResponse();
+            IResponseInfo responseInfo = this.helpers.analyzeResponse(response);
+
+            //identify if the flag is in the response by changing the bytes to a string
+            if (this.helpers.bytesToString(response).contains("123flag123")){
+                
+            }
 
 
 
-
-
-        
+        }   
     }
     
 }
+
