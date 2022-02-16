@@ -29,8 +29,6 @@ package burp;
 import java.net.URL;
 import java.net.http.HttpResponse.ResponseInfo;
 
-import burp.ScannerIssue;
-
 public class HttpListener implements IHttpListener{
 
 
@@ -63,11 +61,8 @@ public class HttpListener implements IHttpListener{
 
             //identify if the flag is in the response by changing the bytes to a string
             if (this.helpers.bytesToString(response).contains("123flag123")){
-                
+                this.callbacks.addScanIssue(new ScannerIssue(url, new IHttpRequestResponse[] {messageInfo}));
             }
-
-
-
         }   
     }
     
